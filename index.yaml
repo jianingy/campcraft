@@ -1,0 +1,6 @@
+---
+default:
+  name: campcraft
+  version: 0.1
+  summary: configuration deployment automation
+

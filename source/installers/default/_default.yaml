@@ -1,0 +1,10 @@
+default:
+  check: /bin/true
+  install: install -m644 '%(source)s' '%(target)s'
+  force: 0
+  preinst: /bin/true
+  postinst: /bin/true
+  download:
+    file: cp '%(source)s' '%(target)s'
+    http: wget -O '%(target)s' '%(source)s'
+    ftp: wget -O '%(target)s' '%(source)s'

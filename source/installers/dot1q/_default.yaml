@@ -1,0 +1,2 @@
+default:
+  base: file:///var/cache/camp

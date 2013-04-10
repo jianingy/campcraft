@@ -1,0 +1,4 @@
+default:
+  source: pkg-list
+  target: /etc/pkg-list
+  post: while read pkgname; do web-multipkg -v $pkgname; done < /etc/pkg-list
