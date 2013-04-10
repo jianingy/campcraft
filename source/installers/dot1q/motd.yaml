@@ -1,4 +1,0 @@
-default:
-  verify: /bin/true
-  source: /etc/motd
-  target: /etc/motd

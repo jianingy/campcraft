@@ -1,2 +1,2 @@
 default:
-  base: file:///var/cache/camp
+  base: file:///var/cache/campcraft
