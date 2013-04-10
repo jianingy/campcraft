@@ -87,8 +87,38 @@ def parse_option(args, spec, options={}, header='', footer=''):
         exit(1)
 
 
+def run_output(*args):
+    from subprocess import Popen, PIPE
+    p = Popen(args, stdout=PIPE)
+    return p.communicate()[0].strip()
+
+
 def get_platform():
-    return ['x86_64']
+
+    from os.path import exists
+    from re import match as re_match
+
+    platforms = []
+    arch = run_output('uname', '-m').replace('686', '386')
+    platforms.append(arch)
+
+    if exists('/etc/debian_version'):
+        platforms.append('debian')
+
+    if exists('/etc/redhat-release'):
+        platforms.append('redhat')
+
+        version = file('/etc/redhat-release').read().strip()
+        badge = 'Red Hat Enterprise Linux Server release (\d+)\.(\d+)'
+        match = re_match(badge, version)
+        if match:
+            platforms.append('rhel%s' % match.group(1))
+
+    if exists('/etc/arch-release'):
+        platforms.append('archlinux')
+
+    verbose('PLATFORMS: %s' % ",".join(platforms))
+    return platforms
 
 
 def override_installer(platforms, installer, spec):
