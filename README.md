@@ -1,0 +1,4 @@
+campcraft
+=========
+
+configuration delopying automation
